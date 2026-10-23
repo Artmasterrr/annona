@@ -1,0 +1,20 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: forbidden-markers
+        name: forbidden military markers (public repo)
+        language: pygrep
+        entry: '(?i)\b(brigade|battalion|regiment|platoon|ammunition|munition|artillery|howitzer|warhead|projectile)s?\b'
+        exclude: ^\.pre-commit-config\.yaml$
